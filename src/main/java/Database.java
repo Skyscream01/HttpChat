@@ -130,7 +130,7 @@ public class Database {
             String timestamp = rs.getString("timestamp");
 
 
-            //тут получаю имя юзра из другой таблицы по его айдишнику. знаю, что криво, но как не через while сделать не знаю. тут по-любому только одно значение возможно.
+
             username = stmt2.executeQuery("SELECT \"name\" FROM \"user\" WHERE id = '" + rs.getString("source_id") + "';");
             if (username.next()) {
                 user = username.getString("name");
@@ -138,7 +138,7 @@ public class Database {
 
             String message = rs.getString("message");
 
-            list.add(timestamp + " " + user + " " + message + "\n");
+            list.add(timestamp + " " + user + ":" + "  " + message + "\n");
             i++;
         }
         return list;

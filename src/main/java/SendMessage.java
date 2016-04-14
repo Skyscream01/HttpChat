@@ -10,9 +10,7 @@ import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.lang.String;
 
-/**
- * Created by Ihar.Kastsenich on 4/13/2016.
- */
+
 public class SendMessage implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {

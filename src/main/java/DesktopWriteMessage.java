@@ -12,9 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * Created by Ihar.Kastsenich on 4/14/2016.
- */
+
 public class DesktopWriteMessage implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try
