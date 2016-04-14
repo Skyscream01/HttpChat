@@ -59,10 +59,10 @@ public class ChatWindow implements HttpHandler {
                     "\n" +
                     "<body>\n" +
                     "\n" +
-                    "<iframe class = \"content\"   src=\"http://192.168.13.202:7779/messageframe?name=Ivan\" frameborder=\"0\">\n" +
+                    "<iframe class = \"content\"   src=\"http://192.168.13.202:7779/messageframe?name="+name+"\" frameborder=\"0\">\n" +
                     "<p>Your browser does not support iframes.</p>\n" +
                     "</iframe>\n" +
-                    "<iframe class = \"footer\" src=\"http://192.168.13.202:7779/inputframe?name=Ivan\" frameborder=\"0\">\n" +
+                    "<iframe class = \"footer\" src=\"http://192.168.13.202:7779/inputframe?name="+name+"\" frameborder=\"0\">\n" +
                     "<p>Your browser does not support iframes.</p>\n" +
                     "</iframe>\n" +
                     "</body>\n" +

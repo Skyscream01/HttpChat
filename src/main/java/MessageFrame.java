@@ -26,7 +26,7 @@ public class MessageFrame implements HttpHandler {
 
 
 
-           // String decodedvalue = URLDecoder.decode(list.toString(), "UTF-8");
+
 
             String response = "<!DOCTYPE html>\n" +
                     "<html>\n" +
@@ -78,7 +78,7 @@ public class MessageFrame implements HttpHandler {
                     "</html>";
 
 
-            t.sendResponseHeaders(200, response.length());
+            t.sendResponseHeaders(200,0);
 
 
             OutputStream os = t.getResponseBody();

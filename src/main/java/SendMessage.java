@@ -34,8 +34,7 @@ public class SendMessage implements HttpHandler {
             decodedvalue = s[1];
 
             if(name != null) {
-               // decodedvalue = decodedvalue.replaceAll("[^a-zA-Z0-9]"," ");
-                Database.insertMessage(name, decodedvalue);
+              Database.insertMessage(name, decodedvalue);
             }
             else
             {
