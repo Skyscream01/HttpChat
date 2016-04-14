@@ -32,7 +32,7 @@ public class ChatWindow implements HttpHandler {
                     "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">" +
                     "    <style>\n" +
                     "body{\n" +
-                    "        background-image: url(argyle.png);\n" +
+                    "        background-color: black;\n" +
                     "        background-repeat:repeat;\n" +
                     "}"+
 
