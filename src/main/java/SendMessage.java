@@ -10,9 +10,7 @@ import java.net.URLDecoder;
 import java.sql.SQLException;
 import java.lang.String;
 
-/**
- * Created by Ihar.Kastsenich on 4/13/2016.
- */
+
 public class SendMessage implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
@@ -34,8 +32,7 @@ public class SendMessage implements HttpHandler {
             decodedvalue = s[1];
 
             if(name != null) {
-               // decodedvalue = decodedvalue.replaceAll("[^a-zA-Z0-9]"," ");
-                Database.insertMessage(name, decodedvalue);
+              Database.insertMessage(name, decodedvalue);
             }
             else
             {

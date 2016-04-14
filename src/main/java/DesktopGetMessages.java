@@ -4,14 +4,13 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * Created by Ihar.Kastsenich on 4/14/2016.
- */
+
 public class DesktopGetMessages implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try
@@ -24,18 +23,18 @@ public class DesktopGetMessages implements HttpHandler {
             ArrayList<String> list = new ArrayList<String>();
             list = Database.getChatMessages();
 
-           /* for(int i = 0; i<list.size(); i++)
+            String formatted="";
+            for(int i=0;i<list.size();i++)
             {
-                String s = URLEncoder.encode(list.get(i), "UTF-8");
-                list.get(i).replace(list.get(i), s);
-            } */
+                formatted=formatted+list.get(i);
+            }
 
-            String response = list.toString();
-            URLEncoder.encode(response, "UTF-8");
-            t.sendResponseHeaders(200, response.length());
+
+            URLDecoder.decode(formatted, "UTF-8");
+            t.sendResponseHeaders(200, 0);
 
             OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
+            os.write(formatted.getBytes());
             os.close();
         }
         catch (SQLException e)

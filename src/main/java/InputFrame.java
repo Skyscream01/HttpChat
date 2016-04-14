@@ -68,9 +68,6 @@ public class InputFrame implements HttpHandler {
                     "<textarea rows=\"5\" cols=\"80\" name=\"message\" accept-charset=\"utf-8\"> </textarea>\n" +
                     "<input type=\"submit\" value=\"Submit\" class=\"button\" align=\"top\">\n" +
                     "    </form>"+
-                  /*  "    <form action=\"http://192.168.13.202:7779/inputframe?name="+ name +" method = \"get\">\n" +
-                    "        <input type=\"submit\" value=\"Refresh\" class=\"button\" align=\"top\">\n" +
-                    "    </form>"+ */
 
                     "\n" +
                     "</div>\n" +

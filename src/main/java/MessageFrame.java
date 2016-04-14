@@ -10,9 +10,7 @@ import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by Ihar.Kastsenich on 4/13/2016.
- */
+
 public class MessageFrame implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
@@ -23,10 +21,14 @@ public class MessageFrame implements HttpHandler {
 
             ArrayList<String> list = new ArrayList<String>();
             list = Database.getChatMessages();
+            String formatted="";
+            for(int i=0;i<list.size();i++)
+            {
+                formatted=formatted+list.get(i);
+            }
 
 
 
-           // String decodedvalue = URLDecoder.decode(list.toString(), "UTF-8");
 
             String response = "<!DOCTYPE html>\n" +
                     "<html>\n" +
@@ -72,13 +74,13 @@ public class MessageFrame implements HttpHandler {
                     "\n" +
                     "\n" +
                     "<div id=\"section\">\n" + "<textarea rows=\"25\" cols=\"150\">\n" +
-                    list + "</textarea>\n" +
+                    formatted + "</textarea>\n" +
                     "</div>\n" +
                     "</body>\n" +
                     "</html>";
 
-
-            t.sendResponseHeaders(200, response.length());
+            URLEncoder.encode(response, "UTF-8");
+            t.sendResponseHeaders(200,0);
 
 
             OutputStream os = t.getResponseBody();
