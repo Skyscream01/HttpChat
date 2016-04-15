@@ -14,7 +14,7 @@ public class LoginPage implements HttpHandler {
             Boolean success = false;
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html; charset=utf-8");
-
+            Logz.log.info("Login page reloading");
 
             String s = t.getRequestURI().getRawQuery();
             if (s == null) {
@@ -180,11 +180,11 @@ public class LoginPage implements HttpHandler {
         }
         catch (SQLException e)
         {
-
+Logz.log.error("Error during login page reloading", e);
         }
         catch (ClassNotFoundException e)
         {
-
+            Logz.log.error("Error during login page reloading", e);
         }
     }
 }

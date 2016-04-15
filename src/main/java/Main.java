@@ -7,6 +7,7 @@ import com.sun.net.httpserver.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        Logz.Init();
         HttpServer server = HttpServer.create(new InetSocketAddress(7779), 0);
         server.createContext("/", new HomePage());
         server.createContext("/register", new Register());
