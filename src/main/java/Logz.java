@@ -9,7 +9,7 @@ public class Logz
     final static public Logger log = Logger.getRootLogger();
     public static void Init()
     {
-        String path = System.getProperty("user.dir")+"\\log4j.properties";
+        String path = System.getProperty("user.dir")+"\\src\\main\\java\\log4j.properties";
         PropertyConfigurator.configure(path);
     }
 }
