@@ -14,6 +14,7 @@ import java.util.Map;
 public class Register implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
+            Logz.log.info("Registration attempt");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html");
 
@@ -169,12 +170,15 @@ public class Register implements HttpHandler {
                 OutputStream os = t.getResponseBody();
                 os.write(response.getBytes());
                 os.close();
+                Logz.log.info(login +" successfully registered");
             }
 
         }
         catch (SQLException x) {
+            Logz.log.error("Error during registration", x);
         }
         catch (ClassNotFoundException x) {
+            Logz.log.error("Error during registration", x);
         }
 
     }

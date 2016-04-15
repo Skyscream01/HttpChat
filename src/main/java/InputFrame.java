@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class InputFrame implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
-
+            Logz.log.info("Frame reloading");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html; charset=utf-8");
 

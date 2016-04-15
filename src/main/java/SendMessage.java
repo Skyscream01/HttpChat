@@ -14,6 +14,7 @@ import java.lang.String;
 public class SendMessage implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
+            Logz.log.info("Sending message");
             String name = t.getRequestURI().getRawQuery();
             name = name.replace("name=", "");
             Headers h = t.getResponseHeaders();
@@ -45,8 +46,8 @@ public class SendMessage implements HttpHandler {
             os.close();
 
         }
-        catch (SQLException e) {}
-        catch (ClassNotFoundException e){}
+        catch (SQLException e) {Logz.log.error("Error during message sending", e);}
+        catch (ClassNotFoundException e){Logz.log.error("Error during message sending", e);}
 
     }
 }

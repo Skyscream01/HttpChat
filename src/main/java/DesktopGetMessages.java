@@ -15,6 +15,7 @@ public class DesktopGetMessages implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try
         {
+            Logz.log.info("Getting messages for desktop app");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html; charset=utf-8");
 
@@ -36,14 +37,15 @@ public class DesktopGetMessages implements HttpHandler {
             OutputStream os = t.getResponseBody();
             os.write(formatted.getBytes());
             os.close();
+            Logz.log.info("Messages are sent");
         }
         catch (SQLException e)
         {
-
+Logz.log.error("Error during getting messages for desktop client", e);
         }
         catch (ClassNotFoundException e)
         {
-
+            Logz.log.error("Error during getting messages for desktop client", e);
         }
     }
 

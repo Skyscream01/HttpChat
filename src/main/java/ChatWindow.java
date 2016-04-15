@@ -1,6 +1,7 @@
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import sun.rmi.runtime.Log;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,9 +9,6 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- * Created by Ihar.Kastsenich on 4/12/2016.
- */
 public class ChatWindow implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
@@ -20,8 +18,7 @@ public class ChatWindow implements HttpHandler {
             String name = t.getRequestURI().getRawQuery();
 
             name = name.replace("name=", "");
-
-
+            Logz.log.info(name +" have just connected to the chat");
             ArrayList<String> list = new ArrayList<String>();
             list = Database.getChatMessages();
 
@@ -68,16 +65,20 @@ public class ChatWindow implements HttpHandler {
                     "</body>\n" +
                     "</html>";
 
-            t.sendResponseHeaders(200, response.length());
+            t.sendResponseHeaders(200, 0);
 
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
 
         }
-        catch (ClassNotFoundException e) {
+        catch (ClassNotFoundException e)
+        {
+            Logz.log.error("Error during chat window opens", e);
         }
-        catch (SQLException e) {
+        catch (SQLException e)
+        {
+            Logz.log.error("Error during chat window opens", e);
         }
     }
 }

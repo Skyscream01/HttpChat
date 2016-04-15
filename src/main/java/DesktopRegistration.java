@@ -14,6 +14,7 @@ public class DesktopRegistration implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try
         {
+            Logz.log.info("Desktop registration");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html");
 
@@ -29,6 +30,7 @@ public class DesktopRegistration implements HttpHandler {
                 OutputStream os = t.getResponseBody();
                 os.write(0);
                 os.close();
+                Logz.log.info("Desktop registration successfull");
             }
             else
             {
@@ -36,17 +38,18 @@ public class DesktopRegistration implements HttpHandler {
                 OutputStream os = t.getResponseBody();
                 os.write(0);
                 os.close();
+                Logz.log.info("Desktop registration unsuccessfull");
             }
 
 
         }
         catch (SQLException e)
         {
-
+            Logz.log.error("Error during desktop registration", e);
         }
         catch (ClassNotFoundException e)
         {
-
+            Logz.log.error("Error during desktop registration", e);
         }
     }
 

@@ -168,7 +168,7 @@ public class LoginPage implements HttpHandler {
                         Database.writeStatistics("guest", success);
                     }
 
-                    }
+                }
                 else
                 {
                     h.set("Location", "http://192.168.13.202:7779/login");

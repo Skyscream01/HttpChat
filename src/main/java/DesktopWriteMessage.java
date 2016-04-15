@@ -1,6 +1,7 @@
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import sun.rmi.runtime.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class DesktopWriteMessage implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try
         {
+            Logz.log.info("Desktop recieving messages");
             String name = t.getRequestURI().getRawQuery();
             name = name.replace("name=", "");
 
@@ -48,11 +50,11 @@ public class DesktopWriteMessage implements HttpHandler {
         }
         catch (SQLException e)
         {
-
+            Logz.log.error("Error during desktop recieving messages", e);
         }
         catch (ClassNotFoundException e)
         {
-
+            Logz.log.error("Error during desktop recieving messages", e);
         }
     }
 

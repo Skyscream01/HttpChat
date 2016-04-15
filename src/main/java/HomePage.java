@@ -8,6 +8,7 @@ import java.io.OutputStream;
 
     class HomePage implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
+            Logz.log.info("Creating home page");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type","text/html");
 
@@ -59,5 +60,6 @@ import java.io.OutputStream;
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());
             os.close();
+            Logz.log.info("Home page sent successfull");
         }
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class MessageFrame implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
+            Logz.log.info("Message frame creating");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html; charset=cp1251");
 
@@ -89,8 +90,10 @@ public class MessageFrame implements HttpHandler {
 
         }
         catch (ClassNotFoundException e) {
+            Logz.log.error("Error during message frame creating", e);
         }
         catch (SQLException e) {
+            Logz.log.error("Error during message frame creating", e);
         }
     }
 }

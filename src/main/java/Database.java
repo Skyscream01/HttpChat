@@ -22,7 +22,8 @@ public class Database {
     public static String db;
 
     public static Connection Connect() throws ClassNotFoundException, SQLException, IOException {
-        Wini ini = new Wini(new File("HttpTestv1/config.ini"));
+        Logz.log.info("Database connectioin...");
+        Wini ini = new Wini(new File("config.ini"));
 
         host = ini.get("host", "host");
         port = ini.get("host", "port");
@@ -33,10 +34,12 @@ public class Database {
         Class.forName("org.postgresql.Driver");
 
         Connection connection = DriverManager.getConnection("jdbc:postgresql://" + host + ":" + port + "/" + db + "?user=" + login + "&password=" + password + "&useUnicode=true&characterEncoding=UTF-8");
+        Logz.log.info("Database connectioin successfull");
         return connection;
     }
 
     public static boolean insertClient(String name, String password) throws IOException, ClassNotFoundException, SQLException {
+        Logz.log.info("Inserting new entry in database");
         Connection connect = Database.Connect();
         Statement statement = connect.createStatement();
         String id = null;
@@ -62,6 +65,7 @@ public class Database {
     }
 
     public static void insertMessage(String username, String message) throws IOException, ClassNotFoundException, SQLException {
+        Logz.log.info("Inserting new message in DB");
         Connection connect = Database.Connect();
         Statement statement = connect.createStatement();
         Date dateTime = new Date();
@@ -75,6 +79,7 @@ public class Database {
 
     //напивать запрос на получение юзер айди нужного клиента
     public static String getUserId(String username) throws IOException, ClassNotFoundException, SQLException {
+        Logz.log.info("Getting user ID form DB");
         Connection connect = Database.Connect();
         Statement stmt = connect.createStatement();
         String id = null;
@@ -91,6 +96,7 @@ public class Database {
     }
 
     public static boolean credentialCheck(String login, String password) throws IOException, ClassNotFoundException, SQLException {
+        Logz.log.info("Checking credentials");
         Connection connect = Database.Connect();
         Statement stmt = connect.createStatement();
         String psswd;
@@ -101,19 +107,23 @@ public class Database {
             psswd = rs.getString("password");
             if (psswd.equals(password)) {
                 Connect().close();
+                Logz.log.info("Credentials are valid");
                 return true;
             } else {
                 Connect().close();
+                Logz.log.info("Invalid credentials");
                 return false;
             }
         } else {
             Connect().close();
+            Logz.log.info("Invalid credentials");
             return false;
         }
 
     }
 
     public static ArrayList<String> getChatMessages() throws IOException, ClassNotFoundException, SQLException {
+        Logz.log.info("Getting Chat messages");
         Connection connect = Database.Connect();
         Statement stmt = connect.createStatement();
         Statement stmt2 = connect.createStatement();
@@ -144,6 +154,7 @@ public class Database {
         return list;
     }
     public static boolean checkUser(String login) throws IOException, ClassNotFoundException, SQLException {
+        Logz.log.info("Checking user");
         Connection connect = Database.Connect();
         Statement stmt = connect.createStatement();
         boolean success = false;

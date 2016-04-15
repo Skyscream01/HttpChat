@@ -14,6 +14,7 @@ public class DesktopLogin implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try
         {
+            Logz.log.info("Desktop login");
             Headers h = t.getResponseHeaders();
             h.set("Content-Type", "text/html");
 
@@ -33,6 +34,7 @@ public class DesktopLogin implements HttpHandler {
                 OutputStream os = t.getResponseBody();
                 os.write(0);
                 os.close();
+                Logz.log.info("Desktop login successfull");
             }
             else
             {
@@ -40,15 +42,16 @@ public class DesktopLogin implements HttpHandler {
                 OutputStream os = t.getResponseBody();
                 os.write(0);
                 os.close();
+                Logz.log.info("Desktop login invalid");
             }
         }
         catch (SQLException e)
         {
-
+Logz.log.error("Error during desktop log in", e);
         }
         catch (ClassNotFoundException e)
         {
-
+            Logz.log.error("Error during desktop log in", e);
         }
     }
 
