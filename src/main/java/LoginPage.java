@@ -134,7 +134,7 @@ public class LoginPage implements HttpHandler {
                         "    <p><input type=\"submit\" value=\"Log in\"></p>\n" +
                         "  </form>\n" +
                         "<form class=\"login-container\">" +
-                        "<p><a href =\"http://192.168.13.202:7779/chat?name=guest\"><input type=\"submit\" value=\"Log in as guest\"></a></p>"+
+                        "<a href =\"http://192.168.13.202:7779/chat?name=guest\"><input type=\"submit\" value=\"Log in as guest\" method = \"get\"></a>"+
                         "</form>"+
                         "</div>\n" +
                         "    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>    \n" +
@@ -152,18 +152,29 @@ public class LoginPage implements HttpHandler {
                 String login = map.get("login");
                 String password = map.get("password");
                 success = Database.credentialCheck(login, password);
+                name = login;
 
                 if (success)
                 {
-                    name = login;
+
                     h.set("Location", "http://192.168.13.202:7779/chat?name=" + name);
                     t.sendResponseHeaders(302, 3);
 
-                    System.out.println("success");
+                    if (name != "guest") {
+                        Database.writeStatistics(name, success);
+                    }
+                    else
+                    {
+                        Database.writeStatistics("guest", success);
+                    }
+
                     }
                 else
                 {
-                    System.out.println("Invalid credentials. Try again!");
+                    h.set("Location", "http://192.168.13.202:7779/login");
+                    t.sendResponseHeaders(302, 3);
+                    Database.writeStatistics(name, success);
+
                 }
             }
         }

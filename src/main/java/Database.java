@@ -159,5 +159,21 @@ public class Database {
         return true;
         }
     }
+    public static void  writeStatistics(String username, boolean success)throws IOException, ClassNotFoundException, SQLException {
+        Connection connect = Database.Connect();
+        Statement stmt = connect.createStatement();
+        Date dateTime = new Date();
+        String insertmessage;
+
+        if (success)
+        {
+           insertmessage  = "INSERT INTO \"statistics\" (username, timestamp, action) VALUES ('" + username + "', '" + new Timestamp((dateTime).getTime()) + "', '" + username + " is logged in');";
+
+        } else {
+            insertmessage = "INSERT INTO \"statistics\" (username, timestamp, action) VALUES ('" + username + "', '" + new Timestamp((dateTime).getTime()) + "', '" + username + " failed to log in');";
+        }
+        stmt.executeUpdate(insertmessage);
+        Connect().close();
+    }
 
 }
